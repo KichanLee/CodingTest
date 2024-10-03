@@ -1,23 +1,50 @@
 
+# import sys
+# sys.stdin=open("input.txt", "rt")
 
-# p, q p를 q로 나누면 나머지가 0이면 q는 p의 약수이다.
-# if(p % q == 0)
-# 1, 2, 3, 6
-#  n과 k가 주어졌을때 k번째로 작은수를 구해라
+# # k = int(input())
+n ,k = map(int, input().split())
+ls = list()
+
+for i in range(1, n + 1):
+    # print(i)
+    if(n % i == 0):
+        ls.append(i)
 
 
-# for(int i = 1; i <= n; ++i)
-# { 
-#       if(n % i == 0)
-#           push.array(k);
-#       if( array.size() < k)
-#               return (-1);
-#        return(array(k);)
-# }
-# 1. 약수를 구하기
-# 2. 약수 중 k번째로 작은 수 찾기
-# 3. 약수의 갯수가 k보다 작으면 -1 출력하기
-#
-# 알아야하는 문법  
-# 주석처리하기
-# For 문, if문 , 입력받기, 자료구조
+if((len(ls)) + 1< k ):
+    print(-1, end="")
+else:
+    print(ls[k - 1], end="")
+
+
+n, k = map(int, input().split())
+cnt = 0
+
+for i in range(1, n + 1):
+    if n % i == 0:
+        ++cnt
+    if cnt == k:
+        print(i)
+        break
+    print(0)
+
+
+n, k = map(int, input().split())
+ls = []
+
+# 1부터 sqrt(n)까지 약수를 구하고 약수를 쌍으로 추가
+for i in range(1, int(math.sqrt(n)) + 1): 
+    if n % i == 0:
+        ls.append(i)  # i는 약수
+        if i != n // i:  # i와 n // i가 같지 않을 때만 추가 (중복 방지)
+            ls.append(n // i)
+
+# 약수들을 오름차순으로 정렬
+ls.sort()
+
+# k번째 약수가 존재하는지 확인
+if len(ls) < k:
+    print(0)
+else:
+    print(ls[k - 1])
